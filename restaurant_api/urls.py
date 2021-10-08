@@ -5,4 +5,5 @@ from .views import *
 
 urlpatterns = [
     path('', testing),
+    path('insertData',insert_data)
 ]
