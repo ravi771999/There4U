@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from datetime import datetime
-from restaurant_api import models
+from user_api.models import User
 
 # Create your views here.
 
@@ -25,8 +25,8 @@ def insert_data(request):
     now = datetime.now()
     created_at=now
     updated_at=now
-    obj=models.User(name=name, email=email,password=password, city=city, state= state, zipcode=zipcode,balance=balance,phone=phone,created_at=created_at,updated_at=updated_at)
+    obj=User(name=name, email=email,password=password, city=city, state= state, zipcode=zipcode,balance=balance,phone=phone,created_at=created_at,updated_at=updated_at)
     obj.save()   
     return Response({"status":"Your Information has been stored"})
 
-{"name": "Raveet Kumar", "email": "kumarraveet52@gmail.com", "password": "admin", "city": "Fatehgarh", "state": "Uttar Pradesh", "zipcode": 209602, "balance": 1200, "phone": 9119628406}
+#{"name": "Raveet Kumar", "email": "kumarraveet52@gmail.com", "password": "admin", "city": "Fatehgarh", "state": "Uttar Pradesh", "zipcode": 209602, "balance": 1200, "phone": 9119628406}
