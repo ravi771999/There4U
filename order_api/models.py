@@ -1,7 +1,6 @@
 from django.db import models
 from restaurant_api.models import Restaurant,Food
 from user_api.models import User
-
 # Create your models here.
 
 class Order(models.Model):

@@ -4,6 +4,5 @@ from django.urls import path,include
 from .views import *
 
 urlpatterns = [
-    path('', testing),
-    path('insertData',insert_data)
+    
 ]
