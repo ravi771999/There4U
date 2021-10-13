@@ -16,9 +16,10 @@ class UserView(APIView):
         return Response({"status":200 , "message":"how are you all"})
 
 
-    def post(self,request,**data):
+    def post(self,request,**wargs):
         data=request.data
-        print(data)
+        print("data :",data)
+        print("wargs: ",wargs)
         name=data["name"]
         email=data["email"]
         password=data["password"]
@@ -28,7 +29,7 @@ class UserView(APIView):
         balance=data["balance"]
         phone=data["phone"]
         
-        create_user(name=name, email=email, city=city, state= state, zipcode=zipcode,balance=balance,phone=phone,password=password)
+        obj=User(name=name, email=email, city=city, state= state, zipcode=zipcode,balance=balance,phone=phone,password=password)
         obj.save()   
         return Response({"status":"Your Information has been stored"})
 

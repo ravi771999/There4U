@@ -3,12 +3,15 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
+
+
 class User(AbstractBaseUser):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True,
     )
+    name=models.CharField(max_length=50,null = True)
     city=models.CharField(max_length=50)
     state=models.CharField(max_length=50)
     zipcode=models.IntegerField()
