@@ -1,25 +1,26 @@
+from datetime import datetime
+
 from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from datetime import datetime
-from rest_framework.views import APIView
-from user_api.models import User
-from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+from rest_framework.views import APIView
+
+from user_api.models import User
+
 # Create your views here.
 
 class UserView(APIView):
     #permission_classes = [IsAuthenticated]
 
     def get(self,request,format=None): 
+        obj=User.objects.all()
         return Response({"status":200 , "message":"how are you all"})
 
 
     def post(self,request,**wargs):
         data=request.data
-        print("data :",data)
-        print("wargs: ",wargs)
         name=data["name"]
         email=data["email"]
         password=data["password"]
@@ -35,7 +36,6 @@ class UserView(APIView):
 
     def register(self,request):
         details = request.data
-        print(details)
         user = User.objects.create_user(details["username"], details["email"], details["password"])
         new_token=str(Token.objects.create(user=user))
         detailsobj = User.objects.create(user=user, phone=details["phone"])

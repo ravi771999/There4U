@@ -20,3 +20,4 @@ class Order_Detail(models.Model):
     total_price=models.IntegerField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
+
