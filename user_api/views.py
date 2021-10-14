@@ -42,7 +42,6 @@ class UserView(APIView):
         detailsobj.save()
         return Response({"token":new_token})
 
-
     def dashboard(self, request):
         return Response("logined user")
 
