@@ -23,8 +23,8 @@ class User(AbstractBaseUser):
     zipcode=models.IntegerField()
     balance=models.IntegerField()
     phone=models.BigIntegerField()
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now_add=True,null=True)
 
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
