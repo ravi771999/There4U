@@ -25,3 +25,4 @@ class UserSerializer(serializers.ModelSerializer):
         instance.phone = validated_data.get('phone', instance.phone)
 
         return instance
+
