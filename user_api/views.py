@@ -1,4 +1,3 @@
-from functools import partial
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
@@ -48,6 +47,7 @@ class UserViewSet(viewsets.ViewSet):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+        
         return Response({"Unable to update the user right now.."})
 
     def partial_update(self, request, pk=None):
@@ -62,6 +62,6 @@ class UserViewSet(viewsets.ViewSet):
 
 
 
-# {"username": "raveet","email":"r@gmail.com", "password": "jtg"}
+#{"username": "raveet","email":"r@gmail.com", "password": "jtg"}
 #{"name": "Raveet Kumar", "email": "kumarraveet52@gmail.com", "password": "admin", "city": "Fatehgarh", "state": "Uttar Pradesh", "zipcode": 209602, "balance": 1200, "phone": 9119628406}
 
