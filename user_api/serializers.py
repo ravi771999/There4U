@@ -7,7 +7,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=User
-        exclude=['id','password','last_login','is_active','staff','admin']
+        exclude=['id','password','last_login','active','staff','admin']
     
     def create(self,validate_data):
         return User.objects.create(**validate_data)
@@ -26,5 +26,6 @@ class UserSerializer(serializers.ModelSerializer):
         instance.balance = validated_data.get('balance', instance.balance)
         instance.phone = validated_data.get('phone', instance.phone)
         instance.updated_at=datetime.now()
+        instance.save()
         return instance
 
