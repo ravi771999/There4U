@@ -5,7 +5,6 @@ from rest_framework.routers import DefaultRouter
 
 from .views import *
 
-#ADD YOUR URL HERE
 router=DefaultRouter()
 router.register(r'users',UserViewSet,basename='user')
 

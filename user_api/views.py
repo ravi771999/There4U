@@ -61,7 +61,3 @@ class UserViewSet(viewsets.ViewSet):
         return Response({"Unable to update the user right now.."})
 
 
-
-#{"username": "raveet","email":"r@gmail.com", "password": "jtg"}
-#{"name": "Raveet Kumar", "email": "kumarraveet52@gmail.com", "password": "admin", "city": "Fatehgarh", "state": "Uttar Pradesh", "zipcode": 209602, "balance": 1200, "phone": 9119628406}
-

@@ -35,15 +35,16 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-"""
+class User(AbstractBaseUser):
+    """
     This User model is going to store the information of the User such as:
     email: email id of the user
     city: city where user resides
     state: state where user resides
     zipcode: to store the zipcode of the area of user
     phone: to store the phone number of the user
-"""
-class User(AbstractBaseUser):
+    """
+    
     email = models.EmailField(
         verbose_name='Email address',
         max_length=255,
