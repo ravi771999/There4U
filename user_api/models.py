@@ -46,7 +46,7 @@ class User(AbstractBaseUser):
     """
     
     email = models.EmailField(
-        verbose_name='Email address',
+        verbose_name='Email_address',
         max_length=255,
         unique=True,
     )
@@ -78,7 +78,6 @@ class User(AbstractBaseUser):
         
     def __str__(self):
         return str(self.email) if self.email else ''
-
 
     def has_perm(self, perm, obj=None):
         """Does the user have a specific permission?"""

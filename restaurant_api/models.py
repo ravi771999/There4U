@@ -71,7 +71,7 @@ class Menu_Food(models.Model):
     order_count: number of times this food item is ordered from this restaurant for this menu.
     cost: cost of this food item in this restaurant for this menu
     quantity_left: quantity left for this food item in this restaurant.
-    """
+    """     
     restaurant_menu_id = models.ForeignKey(Restaurant_Menu, on_delete=models.CASCADE)
     food_id = models.ForeignKey(Food, on_delete=models.CASCADE)
     order_count=models.IntegerField(default=0)
@@ -79,3 +79,4 @@ class Menu_Food(models.Model):
     quantity_left=models.IntegerField()
     created_at=models.DateTimeField(auto_now_add=True,null=True)
     updated_at=models.DateTimeField(auto_now_add=True,null=True)
+
