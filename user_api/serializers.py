@@ -1,13 +1,14 @@
 from datetime import datetime
 
 from rest_framework import fields, serializers, viewsets
+
 from user_api.models import User
 
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=User
-        exclude=['id','password','last_login','active','staff','admin']
+        exclude=['password','active','staff','admin','last_login']
     
     def create(self,validate_data):
         return User.objects.create(**validate_data)
@@ -16,6 +17,11 @@ class UserSerializer(serializers.ModelSerializer):
         if len(str(value)) == 6:
             return value
         return serializers.ValidationError("Invalid ZipCode")
+
+    def validate_phone(self,value):
+        if(len(str(value))==10):
+            return value
+        return serializers.ValidationError("Invalid Phone Number")
 
     def update(self, instance, validated_data):
         instance.email = validated_data.get('email', instance.email)
@@ -29,3 +35,10 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+
+class PasswordSerializer(serializers.Serializer):
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)

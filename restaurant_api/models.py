@@ -12,11 +12,11 @@ class Restaurant(models.Model):
     delivery_status: to store the current status of restaurant ( open= True , close = False)
     """
     restaurant_name=models.CharField(max_length=50)
-    first_address_line=models.TextField(max_length=100)
-    second_address_line=models.TextField(max_length=100)
-    delivery_status=models.BooleanField(null=True)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    first_address_line=models.TextField(max_length=100,null=True)
+    second_address_line=models.TextField(max_length=100,null=True)
+    delivery_status=models.BooleanField()
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now_add=True,null=True)
 
 
 class Food(models.Model):
@@ -25,8 +25,8 @@ class Food(models.Model):
     name: to store the name of the food item.
     """
     name = models.CharField(max_length=100)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now_add=True,null=True)
 
 
 class Ownership(models.Model):
@@ -37,8 +37,8 @@ class Ownership(models.Model):
     """
     restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now_add=True,null=True)
 
 
 class Menu(models.Model):
@@ -47,8 +47,8 @@ class Menu(models.Model):
     name: to store the name of the particular menu
     """
     name = models.CharField(max_length=50)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now_add=True,null=True)
 
 
 class Restaurant_Menu(models.Model):
@@ -59,8 +59,8 @@ class Restaurant_Menu(models.Model):
     """
     restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     menu_id = models.ForeignKey(Menu, on_delete=models.CASCADE)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now_add=True,null=True)
 
 
 class Menu_Food(models.Model):
@@ -74,8 +74,8 @@ class Menu_Food(models.Model):
     """
     restaurant_menu_id = models.ForeignKey(Restaurant_Menu, on_delete=models.CASCADE)
     food_id = models.ForeignKey(Food, on_delete=models.CASCADE)
-    order_count=models.IntegerField()
+    order_count=models.IntegerField(default=0)
     cost=models.IntegerField()
     quantity_left=models.IntegerField()
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now_add=True,null=True)

@@ -15,12 +15,12 @@ class Order(models.Model):
     """
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    delivery_first_address=models.CharField(max_length=100)
-    delivery_second_address=models.CharField(max_length=100)
-    total_price=models.IntegerField()
-    order_status=models.IntegerField()
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    delivery_first_address=models.CharField(max_length=100,null=True)
+    delivery_second_address=models.CharField(max_length=100,null=True)
+    total_price=models.IntegerField(null=True)
+    order_status=models.IntegerField(null=True)
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now_add=True,null=True)
 
 
 class Order_Detail(models.Model):
@@ -33,8 +33,8 @@ class Order_Detail(models.Model):
     """
     order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
     food_id = models.ForeignKey(Food, on_delete=models.CASCADE)
-    quantity=models.IntegerField()
-    total_price=models.IntegerField()
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    quantity=models.IntegerField(null=True)
+    total_price=models.IntegerField(null=True)
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now_add=True,null=True)
 
