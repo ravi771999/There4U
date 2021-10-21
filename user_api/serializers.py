@@ -8,12 +8,17 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=user_models.User
-        fields=['id','email','name','city','state','zipcode','balance','phone','created_at','updated_at']
+        fields=['id','email','name','city','state','zipcode','balance','phone']
     
     def create(self,validate_data):
         return user_models.User.objects.create(**validate_data)
 
     def validate_zipcode(self,value):
+        """
+            we are validating zip code by first checking if it has 6 digit or not.
+            then i am first converting it in string, then checking if all characters of zip code string
+            is digit or not.
+        """
         if len(str(value)) != 6:
             return serializers.ValidationError("Invalid ZipCode")
         
@@ -25,6 +30,11 @@ class UserSerializer(serializers.ModelSerializer):
         return value
 
     def validate_phone(self,value):
+        """
+            we are validating phone number by first checking if it has 10 digit or not.
+            then i am first converting it in string, then checking if all characters of phone number string
+            is digit or not.
+        """
         if(len(str(value)) != 10):
             return serializers.ValidationError("Invalid Phone Number")
         
