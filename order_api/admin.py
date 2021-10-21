@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from order_api.models import Order
-from order_api.models import Order_Detail
+from order_api import models as orders_models
 
 
-admin.site.register(Order)
-admin.site.register(Order_Detail)
+admin.site.register(orders_models.Order)
+admin.site.register(orders_models.Order_Detail)
+

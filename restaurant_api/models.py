@@ -1,7 +1,6 @@
 from django.db import models
 
-from user_api.models import User
-
+from user_api import models as users_models
 
 class Restaurant(models.Model):
     """
@@ -36,7 +35,7 @@ class Ownership(models.Model):
     user_id: to store the user_id of the owner
     """
     restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(users_models.User, on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True,null=True)
     updated_at=models.DateTimeField(auto_now_add=True,null=True)
 
@@ -79,4 +78,5 @@ class Menu_Food(models.Model):
     quantity_left=models.IntegerField()
     created_at=models.DateTimeField(auto_now_add=True,null=True)
     updated_at=models.DateTimeField(auto_now_add=True,null=True)
+
 

@@ -4,11 +4,11 @@ from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from user_api.models import User
+from user_api import models as user_models
 from user_api.serializers import UserSerializer,PasswordSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = user_models.User.objects.all()
     serializer_class = UserSerializer
 
     @action(detail=True, methods=['post'])
@@ -27,7 +27,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def recent_users(self, request):
-        recent_users = User.objects.all().order('-last_login')
+        recent_users = user_models.User.objects.all().order('-last_login')
         page = self.paginate_queryset(recent_users)
         serializer = self.get_pagination_serializer(page)
         return Response(serializer.data)

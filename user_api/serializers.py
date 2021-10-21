@@ -2,16 +2,16 @@ from datetime import datetime
 
 from rest_framework import fields, serializers, viewsets
 
-from user_api.models import User
+from user_api import models as user_models
 
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model=User
+        model=user_models.User
         fields=['id','email','name','city','state','zipcode','balance','phone','created_at','updated_at']
     
     def create(self,validate_data):
-        return User.objects.create(**validate_data)
+        return user_models.User.objects.create(**validate_data)
 
     def validate_zipcode(self,value):
         if len(str(value)) != 6:
