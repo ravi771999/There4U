@@ -8,20 +8,32 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=User
-        exclude=['password','active','staff','admin','last_login']
+        fields=['id','email','name','city','state','zipcode','balance','phone','created_at','updated_at']
     
     def create(self,validate_data):
         return User.objects.create(**validate_data)
 
     def validate_zipcode(self,value):
-        if len(str(value)) == 6:
-            return value
-        return serializers.ValidationError("Invalid ZipCode")
+        if len(str(value)) != 6:
+            return serializers.ValidationError("Invalid ZipCode")
+        
+        valid_digits=[str(z) for z in range(0,10)]
+        for d in str(value):
+            if d not in valid_digits:
+                return serializers.ValidationError("Invalid Phone Number")
+
+        return value
 
     def validate_phone(self,value):
-        if(len(str(value))==10):
-            return value
-        return serializers.ValidationError("Invalid Phone Number")
+        if(len(str(value)) != 10):
+            return serializers.ValidationError("Invalid Phone Number")
+        
+        valid_digits=[str(z) for z in range(0,10)]
+        for d in str(value):
+            if d not in valid_digits:
+                return serializers.ValidationError("Invalid Phone Number")
+
+        return value
 
     def update(self, instance, validated_data):
         instance.email = validated_data.get('email', instance.email)

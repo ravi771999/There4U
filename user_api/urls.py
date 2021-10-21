@@ -1,12 +1,14 @@
-from django.conf.urls import url
-from django.contrib import admin
-from django.urls import path,include
-
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-from .views import *
+from user_api.views import UserViewSet
+from .auth import CustomAuthToken
 
 router=DefaultRouter()
 router.register(r'users',UserViewSet,basename='user')
 
-urlpatterns=router.urls
+urlpatterns=[
+    path('api-token-auth/', CustomAuthToken.as_view())
+]
+
+urlpatterns+=router.urls

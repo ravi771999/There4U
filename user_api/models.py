@@ -1,7 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
-)
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 class MyUserManager(BaseUserManager):
 
@@ -44,7 +42,6 @@ class User(AbstractBaseUser):
     zipcode: to store the zipcode of the area of user
     phone: to store the phone number of the user
     """
-    
     email = models.EmailField(
         verbose_name='Email_address',
         max_length=255,
@@ -105,6 +102,3 @@ class User(AbstractBaseUser):
         return self.active
 
     objects=MyUserManager()
-
-
-
