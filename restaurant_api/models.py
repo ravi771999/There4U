@@ -78,5 +78,3 @@ class Menu_Food(models.Model):
     quantity_left=models.IntegerField()
     created_at=models.DateTimeField(auto_now_add=True,null=True)
     updated_at=models.DateTimeField(auto_now_add=True,null=True)
-
-

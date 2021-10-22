@@ -1,6 +1,7 @@
 from django.db import models
-from restaurant_api.models import Restaurant,Food
-from user_api.models import User
+
+from restaurant_api import models as restaurant_models
+from user_api import models as user_models
 
 
 class Order(models.Model):
@@ -13,8 +14,8 @@ class Order(models.Model):
     total_price: the total_price of the order
     order_status: tells the current status of order (like delivered == 1, on_the_way == 2, preparing == 3 )
     """
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(user_models.User, on_delete=models.CASCADE)
+    restaurant_id = models.ForeignKey(restaurant_models.Restaurant, on_delete=models.CASCADE)
     delivery_first_address=models.CharField(max_length=100,null=True)
     delivery_second_address=models.CharField(max_length=100,null=True)
     total_price=models.IntegerField(null=True)
@@ -32,7 +33,7 @@ class Order_Detail(models.Model):
     total_price: what is the total price of this food_item (= quantity * food_id_price)
     """
     order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
-    food_id = models.ForeignKey(Food, on_delete=models.CASCADE)
+    food_id = models.ForeignKey(restaurant_models.Food, on_delete=models.CASCADE)
     quantity=models.IntegerField(null=True)
     total_price=models.IntegerField(null=True)
     created_at=models.DateTimeField(auto_now_add=True,null=True)

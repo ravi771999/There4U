@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from rest_framework import fields, serializers, viewsets
+from rest_framework import serializers
 
 from user_api import models as user_models
 
