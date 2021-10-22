@@ -1,10 +1,10 @@
 from django.contrib import admin
-from restaurant_api import models
 
-# Register your models here.
-admin.site.register(models.Restaurant_Menu)
-admin.site.register(models.Restaurant)
-admin.site.register(models.Ownership)
-admin.site.register(models.Food)
-admin.site.register(models.Menu)
-admin.site.register(models.Menu_Food)
+from restaurant_api import models as restaurant_models
+
+admin.site.register(restaurant_models.Restaurant_Menu)
+admin.site.register(restaurant_models.Restaurant)
+admin.site.register(restaurant_models.Ownership)
+admin.site.register(restaurant_models.Food)
+admin.site.register(restaurant_models.Menu)
+admin.site.register(restaurant_models.Menu_Food)
