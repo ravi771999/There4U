@@ -1,6 +1,6 @@
 from django.db import models
 
-from user_api import models as users_models
+from user import models as users_models
 
 class Restaurant(models.Model):
     """

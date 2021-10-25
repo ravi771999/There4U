@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-from user_api import views as user_views
+from user import views as user_views
 from .auth import CustomAuthToken
 
 router=DefaultRouter()

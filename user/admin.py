@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from user_api import models as user_models
+from user import models as user_models
 
 admin.site.register(user_models.User)

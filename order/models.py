@@ -1,7 +1,7 @@
 from django.db import models
 
-from restaurant_api import models as restaurant_models
-from user_api import models as user_models
+from restaurant import models as restaurant_models
+from user import models as user_models
 
 
 class Order(models.Model):

@@ -2,7 +2,7 @@ from datetime import datetime
 
 from rest_framework import serializers
 
-from user_api import models as user_models
+from user import models as user_models
 
 class UserSerializer(serializers.ModelSerializer):
     name=serializers.CharField(max_length=50)
@@ -43,7 +43,7 @@ class UserSerializer(serializers.ModelSerializer):
             is digit or not.
         """
     
-        if(len(str(value)) != 10 or value != None):
+        if(len(str(value)) != 10 or value == None):
             return serializers.ValidationError("Invalid Phone Number")
         
         valid_digits=[str(z) for z in range(0,10)]

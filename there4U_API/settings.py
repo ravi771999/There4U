@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'restaurant_api',
-    'user_api',
-    'order_api',
+    'restaurant',
+    'user',
+    'order',
 ]
 
 REST_FRAMEWORK = {
@@ -53,7 +53,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-AUTH_USER_MODEL = 'user_api.User'
+AUTH_USER_MODEL = 'user.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -4,8 +4,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from user_api import models as user_models
-from user_api.serializers import UserSerializer,PasswordSerializer
+from user import models as user_models
+from user.serializers import UserSerializer,PasswordSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = user_models.User.objects.all()
