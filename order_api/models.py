@@ -21,7 +21,7 @@ class Order(models.Model):
     total_price=models.IntegerField(null=True)
     order_status=models.IntegerField(null=True)
     created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now=True,null=True)
 
 
 class Order_Detail(models.Model):
@@ -37,5 +37,5 @@ class Order_Detail(models.Model):
     quantity=models.IntegerField(null=True)
     total_price=models.IntegerField(null=True)
     created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now=True,null=True)
 

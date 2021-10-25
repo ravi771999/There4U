@@ -5,6 +5,12 @@ from rest_framework import serializers
 from user_api import models as user_models
 
 class UserSerializer(serializers.ModelSerializer):
+    name=serializers.CharField(max_length=50)
+    city=serializers.CharField(max_length=50)
+    state=serializers.CharField(max_length=50)
+    zipcode=serializers.IntegerField(required=False,default=000000)
+    balance=serializers.IntegerField(required=False,default=1000)
+    phone=serializers.IntegerField()
 
     class Meta:
         model=user_models.User
@@ -19,8 +25,9 @@ class UserSerializer(serializers.ModelSerializer):
             then i am first converting it in string, then checking if all characters of zip code string
             is digit or not.
         """
-        if len(str(value)) != 6:
-            return serializers.ValidationError("Invalid ZipCode")
+
+        if len(str(value)) != 6 or value == None:
+            return serializers.ValidationError("Invalid ZipCode, Please Enter a Valid 6 digit zipcode")
         
         valid_digits=[str(z) for z in range(0,10)]
         for d in str(value):
@@ -35,7 +42,8 @@ class UserSerializer(serializers.ModelSerializer):
             then i am first converting it in string, then checking if all characters of phone number string
             is digit or not.
         """
-        if(len(str(value)) != 10):
+    
+        if(len(str(value)) != 10 or value != None):
             return serializers.ValidationError("Invalid Phone Number")
         
         valid_digits=[str(z) for z in range(0,10)]
@@ -44,6 +52,12 @@ class UserSerializer(serializers.ModelSerializer):
                 return serializers.ValidationError("Invalid Phone Number")
 
         return value
+
+    def validated_balance(self,value):
+        if value != None or value < 0:
+            return serializers.ValidationError("Invalid Balance")
+        return value
+
 
     def update(self, instance, validated_data):
         instance.email = validated_data.get('email', instance.email)

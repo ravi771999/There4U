@@ -15,7 +15,7 @@ class Restaurant(models.Model):
     second_address_line=models.TextField(max_length=100,null=True)
     delivery_status=models.BooleanField()
     created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now=True,null=True)
 
 
 class Food(models.Model):
@@ -25,7 +25,7 @@ class Food(models.Model):
     """
     name = models.CharField(max_length=100)
     created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now=True,null=True)
 
 
 class Ownership(models.Model):
@@ -37,7 +37,7 @@ class Ownership(models.Model):
     restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     user_id = models.ForeignKey(users_models.User, on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now=True,null=True)
 
 
 class Menu(models.Model):
@@ -47,7 +47,7 @@ class Menu(models.Model):
     """
     name = models.CharField(max_length=50)
     created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now=True,null=True)
 
 
 class Restaurant_Menu(models.Model):
@@ -59,7 +59,7 @@ class Restaurant_Menu(models.Model):
     restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     menu_id = models.ForeignKey(Menu, on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now=True,null=True)
 
 
 class Menu_Food(models.Model):
@@ -77,4 +77,4 @@ class Menu_Food(models.Model):
     cost=models.IntegerField()
     quantity_left=models.IntegerField()
     created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now=True,null=True)

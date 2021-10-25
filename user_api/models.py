@@ -50,11 +50,11 @@ class User(AbstractBaseUser):
     name=models.CharField(max_length=50,null=True)
     city=models.CharField(max_length=50,null=True)
     state=models.CharField(max_length=50,null=True)
-    zipcode=models.IntegerField(null=True)
+    zipcode=models.IntegerField(blank=True,null=True)
     balance=models.IntegerField(null=True,default=1000)
     phone=models.BigIntegerField(null=True)
     created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now=True,null=True)
 
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
