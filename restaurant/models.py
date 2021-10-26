@@ -12,7 +12,7 @@ class Restaurant(models.Model):
     """
     restaurant_name=models.CharField(max_length=50)
     first_address_line=models.TextField(max_length=100,null=True)
-    second_address_line=models.TextField(max_length=100,null=True)
+    second_address_line=models.TextField(max_length=100,null=True,blank=True)
     delivery_status=models.BooleanField()
     created_at=models.DateTimeField(auto_now_add=True,null=True)
     updated_at=models.DateTimeField(auto_now=True,null=True)
@@ -34,8 +34,8 @@ class Ownership(models.Model):
     restaurant_id: to store the id of the restaurant
     user_id: to store the user_id of the owner
     """
-    restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(users_models.User, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    user = models.ForeignKey(users_models.User, on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True,null=True)
     updated_at=models.DateTimeField(auto_now=True,null=True)
 
@@ -56,8 +56,8 @@ class Restaurant_Menu(models.Model):
     restaurant_id: to store the id of the restaurant
     menu_id: to store the menu_id of the menu
     """
-    restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    menu_id = models.ForeignKey(Menu, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True,null=True)
     updated_at=models.DateTimeField(auto_now=True,null=True)
 
@@ -71,9 +71,9 @@ class Menu_Food(models.Model):
     cost: cost of this food item in this restaurant for this menu
     quantity_left: quantity left for this food item in this restaurant.
     """     
-    restaurant_menu_id = models.ForeignKey(Restaurant_Menu, on_delete=models.CASCADE)
-    food_id = models.ForeignKey(Food, on_delete=models.CASCADE)
-    order_count=models.IntegerField(default=0)
+    restaurant_menu = models.ForeignKey(Restaurant_Menu, on_delete=models.CASCADE)
+    food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    order_count=models.IntegerField(default=0,blank=True)
     cost=models.IntegerField()
     quantity_left=models.IntegerField()
     created_at=models.DateTimeField(auto_now_add=True,null=True)

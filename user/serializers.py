@@ -5,12 +5,6 @@ from rest_framework import serializers
 from user import models as user_models
 
 class UserSerializer(serializers.ModelSerializer):
-    name=serializers.CharField(max_length=50)
-    city=serializers.CharField(max_length=50)
-    state=serializers.CharField(max_length=50)
-    zipcode=serializers.IntegerField(required=False,default=000000)
-    balance=serializers.IntegerField(required=False,default=1000)
-    phone=serializers.IntegerField()
 
     class Meta:
         model=user_models.User
@@ -53,8 +47,9 @@ class UserSerializer(serializers.ModelSerializer):
 
         return value
 
-    def validated_balance(self,value):
-        if value != None or value < 0:
+    def validate_balance(self,value):
+        print(value)
+        if value == None or value < 0:
             return serializers.ValidationError("Invalid Balance")
         return value
 

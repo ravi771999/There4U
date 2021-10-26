@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
+from timestamp import models as timestamp_models
+
 class MyUserManager(BaseUserManager):
 
     def create_user(self, email, password=None):
@@ -33,7 +35,7 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser,timestamp_models.Timestamp):
     """
     This User model is going to store the information of the User such as:
     email: email id of the user
@@ -48,19 +50,22 @@ class User(AbstractBaseUser):
         unique=True,
     )
     name=models.CharField(max_length=50,null=True)
-    city=models.CharField(max_length=50,null=True)
-    state=models.CharField(max_length=50,null=True)
+    city=models.CharField(max_length=50,null=True,blank=True)
+    state=models.CharField(max_length=50,null=True,blank=True)
     zipcode=models.IntegerField(blank=True,null=True)
-    balance=models.IntegerField(null=True,default=1000)
-    phone=models.BigIntegerField(null=True)
-    created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now=True,null=True)
+    balance=models.IntegerField(null=True,default=1000,blank=True)
+    phone=models.BigIntegerField(null=True,blank=True)
 
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
 
     # notice the absence of a "Password field", that is built in.
+
+    class META:
+        indexes = [
+            models.Index(fields=['created_at'], name='created_at_idx'),
+        ]
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = [] # Email & Password are required by default.
