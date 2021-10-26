@@ -62,11 +62,6 @@ class User(AbstractBaseUser,timestamp_models.Timestamp):
 
     # notice the absence of a "Password field", that is built in.
 
-    class META:
-        indexes = [
-            models.Index(fields=['created_at'], name='created_at_idx'),
-        ]
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = [] # Email & Password are required by default.
 
