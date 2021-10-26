@@ -2,9 +2,10 @@ from django.db import models
 
 from restaurant import models as restaurant_models
 from user import models as user_models
+from timestamp import models as timestamp_models
 
 
-class Order(models.Model):
+class Order(timestamp_models.Timestamp):
     """
     This Order model is going to store the information regarding the order such as:
     user_id: the person who placed this order
@@ -20,11 +21,9 @@ class Order(models.Model):
     delivery_second_address=models.CharField(max_length=100,null=True)
     total_price=models.IntegerField(null=True)
     order_status=models.IntegerField(null=True)
-    created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now=True,null=True)
 
 
-class Order_Detail(models.Model):
+class Order_Detail(timestamp_models.Timestamp):
     """
     This Order_Detail model is going to store the information regarding the details of order such as:
     order_id: the order id of the order of which details is stored
@@ -36,6 +35,3 @@ class Order_Detail(models.Model):
     food_id = models.ForeignKey(restaurant_models.Food, on_delete=models.CASCADE)
     quantity=models.IntegerField(null=True)
     total_price=models.IntegerField(null=True)
-    created_at=models.DateTimeField(auto_now_add=True,null=True)
-    updated_at=models.DateTimeField(auto_now=True,null=True)
-
